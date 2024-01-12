@@ -1,7 +1,9 @@
 .container {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    width: 40%;
+    height: 40%;
+    margin: 1rem auto;
 }
 
 .row {
@@ -12,4 +14,9 @@
 .column {
     flex: 1;
     border: 1px solid #000;
+    aspect-ratio: 1 / 1;
+}
+
+.hover {
+    background-color: black;
 }

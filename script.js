@@ -70,8 +70,6 @@ newGridBtn.addEventListener('click', function() {
     generateGrid(newGridSize);
 });
 
-// If we select the 'rainbow' button, we want to change the fillBlack function to fill the div with a random color
-// if we select black then remove old event listener and add fillBlack back in
 const rainbowBtn = document.querySelector('#rainbow-btn');
 const blackBtn = document.querySelector('#black-btn');
 const darkenBtn = document.querySelector('#darken-btn');

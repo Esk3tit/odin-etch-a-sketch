@@ -11,13 +11,29 @@ function generateGrid(n) {
     }
 }
 
+function generateRGB() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256); 
+    const b = Math.floor(Math.random() * 256);
+
+    return `rgb(${r}, ${g}, ${b})`;
+}
+
+function fillBlack(e) {
+    if (e.target.classList.contains('column')) {
+        e.target.style.backgroundColor = 'black';
+    }
+}
+
+function fillRandomColor(e) {
+    if (e.target.classList.contains('column')) {
+        e.target.style.backgroundColor = generateRGB();
+    }
+}
+
 generateGrid(16);
 
-document.querySelector('.container').addEventListener('mouseover', function(e) {
-    if (e.target.classList.contains('column')) {
-        e.target.classList.add('hover');
-    }
-});
+document.querySelector('.container').addEventListener('mouseover', fillBlack);
 
 const newGridBtn = document.querySelector('#new-grid-btn');
 
@@ -32,4 +48,19 @@ newGridBtn.addEventListener('click', function() {
     rows.forEach(row => row.remove());
 
     generateGrid(newGridSize);
+});
+
+// If we select the 'rainbow' button, we want to change the fillBlack function to fill the div with a random color
+// if we select black then remove old event listener and add fillBlack back in
+const rainbowBtn = document.querySelector('#rainbow-btn');
+const blackBtn = document.querySelector('#black-btn');
+
+rainbowBtn.addEventListener('click', function() {
+    document.querySelector('.container').removeEventListener('mouseover', fillBlack);
+    document.querySelector('.container').addEventListener('mouseover', fillRandomColor);
+});
+
+blackBtn.addEventListener('click', function() {
+    document.querySelector('.container').removeEventListener('mouseover', fillRandomColor);
+    document.querySelector('.container').addEventListener('mouseover', fillBlack);
 });
